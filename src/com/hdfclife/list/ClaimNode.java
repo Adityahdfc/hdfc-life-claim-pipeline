@@ -2,8 +2,8 @@ package com.hdfclife.list;
 
 public class ClaimNode {
 
-    int amount;
-    ClaimNode next;
+    public int amount;
+    public ClaimNode next;
 
     public ClaimNode() {
     }
