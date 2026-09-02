@@ -13,28 +13,29 @@ public class CycleDetector {
         }
         return slow;
     }
+    public static int cycleDetection(ClaimNode head) {
 
-    public static int cycleDetection(ClaimNode head){
         ClaimNode slow = head;
         ClaimNode fast = head;
-        while(slow != fast && fast != null && fast.next != null){
+
+        // Phase 1: Detect cycle
+        while (slow != fast || slow == head) {
+
+            if (fast == null || fast.next == null) {
+                System.out.println("No Cycle Present");
+                return -1;
+            }
 
             slow = slow.next;
             fast = fast.next.next;
-
         }
 
-        if(fast != null && fast.next != null){
-            //tell there is no cycle
-        }
-
+        // Phase 2: Find beginning of cycle
         slow = head;
 
-        while(slow != fast){
-
+        while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
-
         }
 
         return slow.amount;

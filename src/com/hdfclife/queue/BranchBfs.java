@@ -32,9 +32,4 @@ public class BranchBfs {
 
     }
 
-    static void main() {
-        for(String str : bfs()){
-            System.out.println(str);
-        }
-    }
 }

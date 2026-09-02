@@ -1,7 +1,7 @@
 package com.hdfclife.stack;
 
 public class ParenthesesChecker {
-    public static boolean paranthesesCheck(String str) {
+    public static boolean parenthesesCheck(String str) {
         ArrayClaimStack arrayStack = new ArrayClaimStack();
         int ptr = -1;
         for (char c : str.toCharArray()) {
@@ -22,6 +22,7 @@ public class ParenthesesChecker {
                 }
             }
         }
+        if(!arrayStack.isEmpty()) return false;
         return true;
     }
 }

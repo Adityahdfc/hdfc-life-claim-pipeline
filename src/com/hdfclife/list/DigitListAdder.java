@@ -19,8 +19,13 @@ public class DigitListAdder {
             }
             cur.next = new ClaimNode(sum);
             cur = cur.next;
-            ptr1 = ptr1.next;
-            ptr2 = ptr2.next;
+            if (ptr1 != null) {
+                ptr1 = ptr1.next;
+            }
+
+            if (ptr2 != null) {
+                ptr2 = ptr2.next;
+            }
         }
 
         if(carry > 0){

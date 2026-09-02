@@ -9,62 +9,51 @@ public class ClaimLinkedList {
 
     public ClaimLinkedList() {
         head = new ClaimNode();
+        size = 0;
     }
 
     public void addLast(int amount) {
         ClaimNode newNode = new ClaimNode(amount);
 
-        if (head.next == null) {
-            head.next = newNode;
-        } else {
-            ClaimNode ptr = head;
-            while (ptr.next != null) {
-                ptr = ptr.next;
-            }
-            ptr.next = newNode;
-            ptr = null;
+        ClaimNode ptr = head;
+        while (ptr.next != null) {
+            ptr = ptr.next;
         }
+        ptr.next = newNode;
+
         size++;
     }
 
     public void addFirst(int amount) {
         ClaimNode newNode = new ClaimNode(amount);
 
-        if (head.next == null) {
-            head.next = newNode;
-        } else {
-            ClaimNode ptr = head.next;
-            head.next = newNode;
-            newNode.next = ptr;
-            ptr = null;
-            newNode = null;
-        }
+        newNode.next = head.next;
+        head.next = newNode;
 
         size++;
     }
 
     public void insertAt(int index, int amount) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
         ClaimNode newNode = new ClaimNode(amount);
         ClaimNode ptr = head;
 
-        while (index-- > 0 && ptr != null) {
+        for (int i = 0; i < index; i++) {
             ptr = ptr.next;
         }
 
-
-        //        if(index != 0) throw new InvalidIndexException();
-
-        ClaimNode temp = ptr.next;
+        newNode.next = ptr.next;
         ptr.next = newNode;
-        newNode.next = temp;
-        ptr = null;
-        newNode = null;
 
         size++;
     }
 
     public void deleteAt(int index) {
-        //if(size == 0)throw new EmptyListException();
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
         ClaimNode ptr = head;
         while (index-- > 0 && ptr != null) {
             ptr = ptr.next;
@@ -78,6 +67,9 @@ public class ClaimLinkedList {
     }
 
     public ClaimNode nodeAt(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
         ClaimNode ptr = head;
         while (index-- >= 0 && ptr != null) {
             ptr = ptr.next;
@@ -89,52 +81,29 @@ public class ClaimLinkedList {
         int[] arr = new int[size];
 
         ClaimNode ptr = head.next;
-        int i = 0;
-        while (ptr != null) {
-            arr[i++] = ptr.amount;
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = ptr.amount;
             ptr = ptr.next;
         }
 
         return arr;
+
     }
 
     public int size() {
         return size;
     }
 
-    public ClaimNode clone(){
+    public ClaimNode clone() {
         ClaimNode cHead = new ClaimNode();
         ClaimNode ptr = cHead;
-        ClaimNode ptrC = head;
-        while(ptrC != null){
+        ClaimNode ptrC = head.next;
+        while (ptrC != null) {
             ptr.next = new ClaimNode(ptrC.amount);
             ptr = ptr.next;
             ptrC = ptrC.next;
         }
         return cHead.next;
     }
-
-//    static void main() {
-//        ClaimLinkedList cll = new ClaimLinkedList();
-//
-//        cll.addLast(25000);
-//        cll.addLast(18000);
-//        cll.addLast(42000);
-//        cll.addLast(15000);
-//        cll.addLast(31000);
-//        cll.addLast(9000);
-//
-//        Arrays.stream(cll.toArray()).forEach(System.out::println);
-//
-//        cll.insertAt(2, 22000);
-//
-//        System.out.println();
-//        Arrays.stream(cll.toArray()).forEach(System.out::println);
-//
-//        cll.deleteAt(2);
-//
-//        System.out.println();
-//        Arrays.stream(cll.toArray()).forEach(System.out::println);
-//
-//    }
 }

@@ -1,5 +1,7 @@
 package com.hdfclife.queue;
 
+import com.hdfclife.exception.QueueEmptyException;
+
 public class CircularClaimQueue {
     int head = 0;
     int tail = 0;
@@ -8,6 +10,9 @@ public class CircularClaimQueue {
     int capacity;
 
     public CircularClaimQueue(int capacity) {
+        if (capacity <= 0) {
+            throw new QueueEmptyException("Capacity must be greater than 0");
+        }
         this.capacity = capacity;
         queue = new int[capacity];
     }
@@ -42,17 +47,5 @@ public class CircularClaimQueue {
         return size == 0;
     }
 
-    static void main() {
-        CircularClaimQueue ccq = new CircularClaimQueue(4);
-        ccq.enqueue(25000);
-        ccq.enqueue(18000);
-        ccq.enqueue(42000);
-        System.out.println(ccq.dequeue());
-        ccq.enqueue(15000);
-        ccq.enqueue(31000);
-        while (!ccq.isEmpty()) {
-            System.out.println(ccq.dequeue());
-        }
-    }
 
 }
