@@ -6,6 +6,7 @@ public class ClaimLinkedList {
     ClaimNode head;
     int size = 0;
 
+
     public ClaimLinkedList() {
         head = new ClaimNode();
     }
@@ -101,6 +102,17 @@ public class ClaimLinkedList {
         return size;
     }
 
+    public ClaimNode clone(){
+        ClaimNode cHead = new ClaimNode();
+        ClaimNode ptr = cHead;
+        ClaimNode ptrC = head;
+        while(ptrC != null){
+            ptr.next = new ClaimNode(ptrC.amount);
+            ptr = ptr.next;
+            ptrC = ptrC.next;
+        }
+        return cHead.next;
+    }
 
 //    static void main() {
 //        ClaimLinkedList cll = new ClaimLinkedList();

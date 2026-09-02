@@ -33,21 +33,6 @@ public class ListReverser {
     }
 // 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
-    static void main() {
-        ClaimNode head = new ClaimNode(1);
-        head.next = new ClaimNode(2);
-        head.next.next = new ClaimNode(3);
-        head.next.next.next = new ClaimNode(4);
-        head.next.next.next.next = new ClaimNode(5);
-        head.next.next.next.next.next = new ClaimNode(6);
 
-        recurReverse(head);
-
-        while(recurHead != null){
-            System.out.println(recurHead.amount);
-            recurHead = recurHead.next;
-        }
-
-    }
 }
 
