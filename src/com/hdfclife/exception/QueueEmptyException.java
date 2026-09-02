@@ -1,4 +1,7 @@
 package com.hdfclife.exception;
 
-public class QueueEmptyException {
+public class QueueEmptyException extends PipelineException{
+    public QueueEmptyException(String message){
+        super(message);
+    }
 }
